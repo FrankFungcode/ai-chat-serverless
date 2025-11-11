@@ -1,0 +1,24 @@
+name = "ai-chat-serverless"
+main = "src/index.ts"
+compatibility_date = "2024-11-11"
+
+# 环境变量（非敏感信息）
+[vars]
+OPENAI_MODEL = "gpt-4-turbo-preview"
+ALLOWED_ORIGINS = "*"
+
+# KV 命名空间（用于存储聊天历史）
+# 需要先创建 KV 命名空间：wrangler kv:namespace create "CHAT_HISTORY"
+# [[kv_namespaces]]
+# binding = "CHAT_HISTORY"
+# id = "your-kv-namespace-id"
+
+# 生产环境配置
+[env.production]
+name = "ai-chat-serverless"
+vars = { OPENAI_MODEL = "gpt-4-turbo-preview" }
+
+# 开发环境配置
+[env.development]
+name = "ai-chat-serverless-dev"
+vars = { OPENAI_MODEL = "gpt-3.5-turbo" }
